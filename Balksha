@@ -1,0 +1,170 @@
+local PabloLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/BatuKvi123/PabloLibV3/main/PabloLibV3"))()
+local window = PabloLib:Create(
+"Yu Hub (Beta)", -- Name here.
+"Disabled", -- If you want draggable set here to "Enabled" if you dont want set to "Disabled".
+"p" -- You can put any keybind here to open close.
+)
+local tab1 = window:CreateTab("Main")
+tab1:CreateButton("Auto Parry", function()
+getgenv().config = getgenv().config or {
+    hit_time = 0.5, -- // recommended 0.25 to 0.75 \ --
+ 
+    mode = 'Always', -- // Hold , Toggle , Always \ --
+    deflect_type = 'Remote', -- // Key Press , Remote \ --
+    notifications = true,
+    keybind = Enum.KeyCode.V
+}
+ 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry%20V4.0.0",true))()
+end)
+tab1:CreateButton("Spam (Manual)", function()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vKhonshu/intro2/main/ui2"))()
+local NotifyLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/vKhonshu/intro/main/ui"))()
+NotifyLib.prompt('Mobile Spam- By kkur0mi', 'Loading..', 5)
+NotifyLib.prompt('Sets Loaded', '', 5)
+NotifyLib.prompt('join discord', 'https://discord.com/invite/CpcfTZS3', 5)
+
+local gui = Instance.new("ScreenGui")
+gui.ResetOnSpawn = false 
+gui.Parent = game.CoreGui 
+
+local frame = Instance.new("Frame")
+frame.Position = UDim2.new(0, 10, 0, 10)
+frame.Size = UDim2.new(0, 150, 0, 75)
+frame.BackgroundColor3 = Color3.new(0, 0, 0)
+frame.BorderSizePixel = 0
+frame.Parent = gui
+
+local button = Instance.new("TextButton")
+button.Text = "Mobile Spam By kkur0mi"
+button.Size = UDim2.new(1, -20, 1, -20)
+button.Position = UDim2.new(0, 10, 0, 10)
+button.BackgroundColor3 = Color3.new(1, 1, 1)
+button.BorderColor3 = Color3.new(0, 0, 0)
+button.BorderSizePixel = 2
+button.Font = Enum.Font.SourceSans
+button.TextColor3 = Color3.new(0, 0, 0)
+button.TextSize = 16
+button.Parent = frame
+
+local activated = false
+
+local function toggle()
+    activated = not activated
+    button.Text = activated and "Close" or "Spam"
+    
+    while activated do
+        local args = {
+            [1] = 1.5,
+            [2] = CFrame.new(-254.2939910888672, 112.13581848144531, -119.27256774902344) * CFrame.Angles(-2.029526710510254, 0.5662040710449219, 2.314905881881714),
+            [3] = {
+                ["2617721424"] = Vector3.new(-273.400146484375, -724.8031005859375, -20.92414093017578),
+                
+            },
+            [4] = {
+                [1] = 910,
+                [2] = 154
+            }
+        }
+
+        game:GetService("ReplicatedStorage").Remotes.ParryAttempt:FireServer(unpack(args))
+        game:GetService("RunService").Heartbeat:Wait()
+    end
+end
+
+button.MouseButton1Click:Connect(toggle)
+end)
+tab1:CreateButton("Hold block to spam", function()
+game:GetService("StarterGui"):SetCore("SendNotification",{
+	Title = "Script by Hosvile",
+	Text = "Hold Block button to Spam",
+	Duration = 5
+})
+
+getgenv().SpamSpeed = 5 -- 1-25
+
+if not getgenv().exeSpam then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Spam",true))()
+end
+
+getgenv().exeSpam = true
+end)
+tab1:CreateButton("Auto Spam", function()
+loadstring(game:HttpGet("https://pastebin.com/raw/t2391h1A"))()
+end)
+tab1:CreateButton("Fps Unlocker", function()
+local ToDisable = {
+	Textures = true,
+	VisualEffects = true,
+	Parts = true,
+	Particles = true,
+	Sky = true
+}
+ 
+local ToEnable = {
+	FullBright = false
+}
+ 
+local Stuff = {}
+ 
+for _, v in next, game:GetDescendants() do
+	if ToDisable.Parts then
+		if v:IsA("Part") or v:IsA("Union") or v:IsA("BasePart") then
+			v.Material = Enum.Material.SmoothPlastic
+			table.insert(Stuff, 1, v)
+		end
+	end
+ 
+	if ToDisable.Particles then
+		if v:IsA("ParticleEmitter") or v:IsA("Smoke") or v:IsA("Explosion") or v:IsA("Sparkles") or v:IsA("Fire") then
+			v.Enabled = false
+			table.insert(Stuff, 1, v)
+		end
+	end
+ 
+	if ToDisable.VisualEffects then
+		if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("SunRaysEffect") then
+			v.Enabled = false
+			table.insert(Stuff, 1, v)
+		end
+	end
+ 
+	if ToDisable.Textures then
+		if v:IsA("Decal") or v:IsA("Texture") then
+			v.Texture = ""
+			table.insert(Stuff, 1, v)
+		end
+	end
+ 
+	if ToDisable.Sky then
+		if v:IsA("Sky") then
+			v.Parent = nil
+			table.insert(Stuff, 1, v)
+		end
+	end
+end
+ 
+game:GetService("TestService"):Message("Effects Disabler Script : Successfully disabled "..#Stuff.." assets / effects. Settings :")
+ 
+for i, v in next, ToDisable do
+	print(tostring(i)..": "..tostring(v))
+end
+ 
+if ToEnable.FullBright then
+    local Lighting = game:GetService("Lighting")
+ 
+    Lighting.FogColor = Color3.fromRGB(255, 255, 255)
+    Lighting.FogEnd = math.huge
+    Lighting.FogStart = math.huge
+    Lighting.Ambient = Color3.fromRGB(255, 255, 255)
+    Lighting.Brightness = 5
+    Lighting.ColorShift_Bottom = Color3.fromRGB(255, 255, 255)
+    Lighting.ColorShift_Top = Color3.fromRGB(255, 255, 255)
+    Lighting.OutdoorAmbient = Color3.fromRGB(255, 255, 255)
+    Lighting.Outlines = true
+end
+end)
+local tab1 = window:CreateTab("Credits")
+tab1:CreateInfo("hosvile fazendo Me")
+local tab1 = window:CreateTab("Close Ui")
+PabloLib:Close()
